@@ -1,0 +1,39 @@
+{% load static %}
+
+<hr>
+{% if user.is_authenticated %}
+<form class="" action="{{ post.get_absolute_url }}" method="post">
+    {% csrf_token %}
+    <div class="media">
+        <img src="{{ user.profile.avatar.url }}" class="rounded-circle mr-2" alt="...">
+        <div class="media-body">
+            <div class="input-group mb-3">
+                {{form.body}}
+                <div class="input-group-append">
+                    <button type="submit" name="button" class="btn btn-dark">sent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endif %}
+{% for comment in comments %}
+<div class="card mt-3 mb-3" style="width: 540px;">
+  <div class="row no-gutters" >
+    <div class="col-md-2">
+      <img src="{{comment.avatar.url}}"  alt="{%static 'img/default_user_avatar.png' %}" class="rounded-circle mr-2 mt-2">
+    </div>
+    <div class="col-md-10">
+      <div>
+          {% if comment.username != '' %}
+          <p align='left' class="card-title">{{comment.username}}</p>
+          {% else %}
+          <p align='left' class="card-title">guest</p>
+          {% endif %}
+        <p align='left' class="card-text ml-1 mr-1">{{comment.body}}</p>
+        <p align='right' class="card-text"><small class="text-muted">{{comment.date_pub}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}

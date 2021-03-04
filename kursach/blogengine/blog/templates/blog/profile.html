@@ -1,0 +1,23 @@
+{% extends 'blog/base_blog.html' %}
+{% load static %}
+{% block title %}
+  Profile
+{% endblock %}
+
+{% block left_bar %}
+    <img src="{{ user.profile.avatar.url }}" width="235" height="235"alt="{% static 'img/default_user_avatar.png' %}">
+    <div class="ml-5">
+        <h1>{{user.username}}</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+<form class="" action="{% url 'update_profile_url' %}" method="post">
+    {% csrf_token %}
+    <div align='left' class="">
+        {{user_form.as_p}}
+        {{profile_form.avatar}}
+    </div>
+    <button align='rigth'type="submit" class="btn btn-info">save</button>
+</form>
+{% endblock %}

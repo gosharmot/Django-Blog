@@ -1,0 +1,15 @@
+{% extends 'blog/base_blog.html'%}
+
+{% block title %}
+  {{ post.title }}
+{% endblock %}
+
+{% block content %}
+  <h1 class="mt-1 mr-1">
+    {{ post.title }}
+  </h1>
+  <p align='left'>
+      {{ post.body }}
+  </p>
+  {% include 'blog/includes/comment_list.html' %}
+{% endblock %}

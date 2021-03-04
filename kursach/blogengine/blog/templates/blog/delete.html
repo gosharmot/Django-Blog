@@ -1,0 +1,22 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+  {{ title }} Delete
+{% endblock %}
+
+{% block content %}
+
+  <form action="{{ obj.get_delete_url }}" method="post">
+    {% csrf_token %}
+
+    <h1 class="mt-1 mr-1">
+      {{title}}: {{ obj.title }}
+    </h1>
+    <p>
+        {{ obj.body }}
+    </p>
+
+    <a href="{{ obj.get_absolute_url }}" class="btn btn-secondary">Canсel</a>
+    <button type="submit" class="btn btn-danger">Delete {{ title }}</button>
+  </form>
+{% endblock %}
